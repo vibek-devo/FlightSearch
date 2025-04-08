@@ -7,6 +7,7 @@ class CityRepository{
             return City;
         }
         catch(error){
+            console.log("Something went wrong in repositoery Layer");
             throw{error};
         }
     }
@@ -18,7 +19,32 @@ class CityRepository{
                     id:cityId
                 }
             });
+            return true;
         }catch(error){
+            console.log("Something went wrong in repositoery Layer"); 
+            throw {error};
+        }
+    }
+    async getCity(cityId){
+     try{
+        const City=await City.findByPk(cityId);
+        return City;
+     }catch(error){
+        console.log("Something went wrong in repositoery Layer"); 
+        throw {error};
+     }
+    }
+
+    async updatecity(cityId,data){
+        try{
+            const City=await City.update(data,{
+                where:{
+                    id:cityId
+                }
+            });
+        }
+        catch(error){
+            console.log("Something went wrong in repositoery Layer"); 
             throw {error};
         }
     }
